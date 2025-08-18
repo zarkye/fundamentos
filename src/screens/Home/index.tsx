@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { Product } from "./components/Product";
+import { Product } from "../../components/Product";
 
 export default function Home(){
     const products = [
