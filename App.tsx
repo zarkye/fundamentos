@@ -1,10 +1,12 @@
-
-import { StyleSheet, Text, View } from 'react-native';
-import Home from './src/screens/screens/Home/index.tsx';
+import { StatusBar, View } from 'react-native';
+import Home from './src/screens/Home';
 
 export default function App() {
   return (
-      <Home />
+    
+        
+        <Home />
+    
   );
 };
 

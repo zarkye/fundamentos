@@ -1,58 +1,71 @@
 import { useState } from "react";
-import { FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Product } from "../../components/Product";
-
+import { styles } from "./styles"
 export default function Home(){
-    const products = [
+    const [newProduct, setNewProduct] = useState("");
+    const [products, setProducts] = useState<string[]>([
     "Arroz",
     "Feijão",
     "Macarrão",
-    "Farinha de Trigo",
-    "Açúcar",
-    "Sal",
-    "Óleo de Soja",
-    "Leite",
-    "Ovos",
-    "Pão",
-    "Café",
-    "Chá",
-    "Manteiga",
-    "Queijo",
-    "Presunto",
-    "Frango",
-    "Carne Bovina",
-    "Peixe",
-    "Frutas",
-    "Legumes",
-    "Verduras",
-    "Batata",
-    "Cebola",
-    "Alho",
-    "Tomate",
-    "Cenoura",
-    "Banana",
-    "Maçã",
-    "Laranja",
-    "Uva",
-    "Refrigerante",
-    "Suco",
-    "Água Mineral",
-    "Biscoitos",
-    "Cereais",
-    "Molho de Tomate",
-    "Condimentos",
-    "Iogurte",
-    "Sorvete",
-    "Chocolate"
-  ];
+    // "Farinha de Trigo",
+    // "Açúcar",
+    // "Sal",
+    // "Óleo de Soja",
+    // "Leite",
+    // "Ovos",
+    // "Pão",
+    // "Café",
+    // "Chá",
+    // "Manteiga",
+    // "Queijo",
+    // "Presunto",
+    // "Frango",
+    // "Carne Bovina",
+    // "Peixe",
+    // "Frutas",
+    // "Legumes",
+    // "Verduras",
+    // "Batata",
+    // "Cebola",
+    // "Alho",
+    // "Tomate",
+    // "Cenoura",
+    // "Banana",
+    // "Maçã",
+    // "Laranja",
+    // "Uva",
+    // "Refrigerante",
+    // "Suco",
+    // "Água Mineral",
+    // "Biscoitos",
+    // "Cereais",
+    // "Molho de Tomate",
+    // "Condimentos",
+    // "Iogurte",
+    // "Sorvete",
+    // "Chocolate"
+  ]);
 
     function handleAddProduct(){
-        
-
+        if(products.includes("Arroz")){
+            Alert.alert("Teste", "Nova mensagem")
+        }
+        setProducts(prevState => [...prevState, newProduct]);
+        setNewProduct("")
     }
 
     function handleProductRemove(name: String) {
-        console.log(`Você cliclou no botão de remover Produto ${name}`)
+        Alert.alert("Remover", `Deseja remover o produto ${name}`, [
+            {
+                text: "Sim",
+                onPress: () => Alert.alert("teste"),
+                style: "destructive"
+            },
+            {
+                text: "Não",
+            }
+        ]);
     }
 
     return (
@@ -66,6 +79,8 @@ export default function Home(){
                 placeholder= "Nome do Produto"
                 placeholderTextColor={"#BDBABA"}
                 keyboardType="default"
+                value={newProduct}
+                onChangeText={setNewProduct}
                 />
 
                 <TouchableOpacity style={styles.button} onPress={handleAddProduct}>
@@ -101,77 +116,3 @@ export default function Home(){
 
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-
-        backgroundColor: "#ebe6e6",
-        padding: 24
-    },
-    title: {
-        color: "#000",
-        fontSize: 24,
-        fontWeight: "bold", //700,
-        lineHeight: 28.8,
-        marginTop: 48,
-    },
-    todaysDate: {
-        color: "#000",
-        fontSize: 16,
-        fontWeight: "normal",
-        lineHeight: 28.8,
-
-    },
-    listTitle: {
-        fontSize: 20,
-        fontWeight: "bold",
-        lineHeight: 24,
-        marginBottom: 36
-        
-    },
-    input: {
-        flex: 1,
-        height: 56,
-        padding: 16,
-        backgroundColor: "#ffffff",
-        borderTopLeftRadius: 5,
-        borderRadius: 5,
-        marginRight: 16,
-    
-    },
-    form : {
-        width: "100%",
-        flexDirection: "row",
-        marginTop: 18,
-
-        marginBottom: 36,
-    },
-
-    button: {
-        width: 56, 
-        height: 56,
-        backgroundColor: "#31C667",
-        borderRadius: 5,
-    
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    textButton: {
-        color: "#fff",
-        fontSize: 24,
-    },
-
-    listEmptyText: {
-        fontSize: 16,
-        fontWeight: 400,
-        lineHeight: 19.2,
-        textAlign: "center",
-        display: "flex"
-    },
-
-    list: {
-        flexGrow: 1,
-        justifyContent: "center"
-    }
-})
